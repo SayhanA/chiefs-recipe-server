@@ -15,6 +15,16 @@ app.get('/chefs', (req, res) => {
     res.send(chefs)
 })
 
+app.get('/recipes', (req, res) => {
+    res.send(recipes);
+})
+
+app.get('/favorite/:id', (req, res) => {
+    const favorite = parseInt(req.params.id);
+    const findFavorite = recipes.filter( data => parseInt(data.idMeal) === favorite);
+    res.send(findFavorite);
+})
+
 app.get('/chef/:chef', (req, res) => {
     const name = req.params.chef;
     const chef = chefs.find( chef => chef.name === name);
